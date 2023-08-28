@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class BrickNoneDiamond : Brick
@@ -16,6 +18,16 @@ public class BrickNoneDiamond : Brick
 		base.OnClickNoneDiamond();
 
 		if (!canCheck) return;
+
+		StartCoroutine(Defeat());		
+	}
+
+	private IEnumerator Defeat()
+	{
+		transform.Find("BrickNormal").gameObject.SetActive(false);
+		transform.Find("BrickBreak").gameObject.SetActive(true);
+
+		yield return new WaitForSeconds(1f);
 
 		UIManager.ShowDefeat();
 	}
