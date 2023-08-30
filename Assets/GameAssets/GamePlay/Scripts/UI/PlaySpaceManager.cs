@@ -1,5 +1,4 @@
 using Assets.Scripts.Shared.Constant;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,17 +9,24 @@ public class PlaySpaceManager : MonoBehaviour
 	[SerializeField] private GridLayoutGroup grid;
 	[SerializeField] private Text mapTitle;
 	[SerializeField] private Text levelTitle;
+	[SerializeField] private Text numberDiamondTitle;
+	[SerializeField] private Text lifeTitle;
 
 	private int numberRowCol = 0;
 	private bool canDetach = false;
+	private int counterNumberDiamond = 0;
 
 	private void OnEnable()
 	{
 		EventDispatcher.AddEvent(EventID.CanDetachGridLayout, OnCanDetachGridLayout);
+		EventDispatcher.AddEvent(EventID.CountDiamond, OnCountDiamondChanged);
+		EventDispatcher.AddEvent(EventID.LifeChanged, OnLifeChanged);
 
 		numberRowCol = GameData.CurrentMap + 2;
 		mapTitle.text = $"Map: {GameData.CurrentMap}";
-		levelTitle.text =$"Level: {GameData.CurrentLevel}";
+		levelTitle.text = $"Level: {GameData.CurrentLevel}/{GameData.TotalLevel}";
+		numberDiamondTitle.text = $": {counterNumberDiamond}/{GameData.NumberDiamond}";
+		lifeTitle.text = $": {GameData.CurrentLife}/{GameData.TotalLife}";
 
 		StartCoroutine(CalCulatePlaySpace());
 		StartCoroutine(DetachGridLayout());
@@ -56,5 +62,17 @@ public class PlaySpaceManager : MonoBehaviour
 		yield return new WaitUntil(() => canDetach);
 
 		grid.GetComponent<GridLayoutGroup>().enabled = false;
+	}
+
+	private void OnCountDiamondChanged(object obj)
+	{
+		counterNumberDiamond++;
+		numberDiamondTitle.text = $": {counterNumberDiamond}/{GameData.NumberDiamond}";
+	}
+
+	private void OnLifeChanged(object obj)
+	{
+		GameData.CurrentLife -= (int)obj;
+		lifeTitle.text = $": {GameData.CurrentLife}/{GameData.TotalLife}";
 	}
 }

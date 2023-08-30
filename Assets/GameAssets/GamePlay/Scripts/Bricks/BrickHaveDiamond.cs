@@ -13,7 +13,7 @@ public class BrickHaveDiamond : Brick
 	{
 		base.OnEnable();
 
-		diaAnim = diamond.GetComponent<Animator>();
+		//diaAnim = diamond.GetComponent<Animator>();
 		AnimationClip[] diaAnimClips = diaAnim.runtimeAnimatorController.animationClips;
 		foreach (var cl in diaAnimClips)
 		{
@@ -52,6 +52,9 @@ public class BrickHaveDiamond : Brick
 
 		AudioManager.PlaySoundStatic("Gem_Collecting");
 		diamond.SetActive(true);
+		diaAnim.Play("Idle");
+		diaAnim.SetBool("isFade", false);
+
 		EventDispatcher.PostEvent(EventID.CountDiamond, 1);
 		Destroy(GetComponent<Button>());
 	}

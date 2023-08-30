@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private int totalDiamond = 0;
 	[SerializeField] private int counter = 0;
 
-	//private bool isBoxStop = false;
 	private bool canCheckCount = false;
 
 	private void OnEnable()
@@ -34,7 +33,7 @@ public class GameManager : MonoBehaviour
 		{
 			yield return new WaitForSeconds(1f);
 
-			if (GameData.GameState == GameState.GameContinue)
+			if (GameData.GameState == GameState.Continue)
 			{
 				GameData.CurrentLevel++;
 				SceneManager.LoadSceneAsync("GamePlay");
@@ -55,7 +54,7 @@ public class GameManager : MonoBehaviour
 
 		if (GameData.CurrentLevel < GameData.TotalLevel)
 		{
-			GameData.GameState = GameState.GameContinue;
+			GameData.GameState = GameState.PreContinue; // De chay anim hoac tinh toan neu co
 		}
 		else
 		{

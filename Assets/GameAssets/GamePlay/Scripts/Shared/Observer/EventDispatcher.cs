@@ -16,6 +16,7 @@ public enum EventID
 	BoxStop,
 	CanDetachGridLayout,
 	CanCheckHideBrick,
+	LifeChanged,
 }
 
 public class EventDispatcher

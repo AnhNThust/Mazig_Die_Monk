@@ -18,16 +18,20 @@ public class BrickNoneDiamond : Brick
 
 		if (GameData.GameState != GameState.Ready) return;
 
-		GameData.GameState = GameState.GameOver;
+		brickNormal.SetActive(false);
+		brickBreak.SetActive(true);
 		AudioManager.PlaySoundStatic("Brick_Drop");
-		StartCoroutine(Defeat());
+		EventDispatcher.PostEvent(EventID.LifeChanged, 1);
+
+		if (GameData.CurrentLife <= 0)
+		{
+			GameData.GameState = GameState.GameOver;
+			StartCoroutine(Defeat());
+		}
 	}
 
 	private IEnumerator Defeat()
 	{
-		brickNormal.SetActive(false);
-		brickBreak.SetActive(true);
-
 		yield return new WaitForSeconds(1f);
 
 		UIManager.ShowDefeat();

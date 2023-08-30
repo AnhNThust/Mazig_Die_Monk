@@ -51,6 +51,8 @@ namespace Assets.Scripts.Shared.Constant
 		public static int HardLevel = Mathf.FloorToInt(0.65f * TotalLevel);
 		public static List<int> Indexes = new(); // Lien quan den Ham GetBrickHaveDiamond trong class Spawner
 		public static GameState GameState = GameState.None;
+		public static int CurrentLife = 3;
+		public static int TotalLife = 3;
 	}
 
 	public class KEY
@@ -66,7 +68,8 @@ namespace Assets.Scripts.Shared.Constant
 		None,
 		PreReady,
 		Ready,
-		GameContinue,
+		PreContinue,
+		Continue,
 		Victory,
 		GameOver,
 	}

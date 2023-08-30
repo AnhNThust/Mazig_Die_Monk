@@ -9,6 +9,7 @@ public class VictoryPanelManager : MonoBehaviour
 	public void Replay()
 	{
 		Time.timeScale = 1f;
+		GameData.CurrentLife = GameData.TotalLife;
 		SceneManager.LoadSceneAsync(nameScene);
 	}
 
@@ -19,6 +20,7 @@ public class VictoryPanelManager : MonoBehaviour
 		GameData.TotalLevel += 5;
 		GameData.NumberDiamond = GameData.CurrentMap + 2;
 		GameData.Indexes.Clear();
+		GameData.CurrentLife = GameData.TotalLife;
 
 		Time.timeScale = 1f;
 		SceneManager.LoadSceneAsync(nameScene);
