@@ -10,7 +10,7 @@ public class DefeatPanelManager : MonoBehaviour
 	{
 		Time.timeScale = 1f;
 		GameData.CurrentLevel = 1;
-		GameData.Indexes.Clear();
+		//GameData.Indexes.Clear();
 		GameData.CurrentLife = GameData.TotalLife;
 
 		SceneManager.LoadSceneAsync(nameScene);
