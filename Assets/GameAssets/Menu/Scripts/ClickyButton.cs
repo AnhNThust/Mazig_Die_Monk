@@ -1,0 +1,26 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class ClickyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+{
+    [SerializeField] private Image _img;
+    [SerializeField] private Sprite _default, _pressed;
+    
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        _img.sprite = _pressed;
+        AudioManager.PlaySoundStatic("Compressed");
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _img.sprite = _default;
+        AudioManager.PlaySoundStatic("Uncompressed");
+    }
+
+    public void OnPlayClicked()
+    {
+        Debug.Log("Clicked!");
+    }
+}
