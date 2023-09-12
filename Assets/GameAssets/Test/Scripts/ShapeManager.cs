@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,38 +10,36 @@ public class ShapeManager : MonoBehaviour
 
     // private int _enemiesFinishedAttacking;
 
-    public void BeginTest()
+    public void BeginTestAsync()
     {
-        // _finishText.SetActive(false);
+        _finishText.SetActive(false);
 
-        // await _shapes[0].RotateForSeconds(1 + 1 * 0);
+        // var tasks = new Task[_shapes.Length];
+        var tasks = new List<Task>();
+        for (int i = 0; i < _shapes.Length; i++)
+        {
+            // StartCoroutine(_shapes[i].RotateForSeconds(1 + 1 * i));
+            // await _shapes[i].RotateForSeconds(1 + 1 * i);
+            // tasks[i] = _shapes[i].RotateForSeconds(1 + 1 * i);
+            tasks.Add(_shapes[i].RotateForSeconds(1 + 1 * i));
+        }
 
-        // // var tasks = new Task[_shapes.Length];
-        // var tasks = new List<Task>();
-        // for (int i = 1; i < _shapes.Length; i++)
-        // {
-        //     // StartCoroutine(_shapes[i].RotateForSeconds(1 + 1 * i));
-        //     // await _shapes[i].RotateForSeconds(1 + 1 * i);
-        //     // tasks[i] = _shapes[i].RotateForSeconds(1 + 1 * i);
-        //     tasks.Add(_shapes[i].RotateForSeconds(1 + 1 * i));
-        // }
-
-        // await Task.WhenAll(tasks);
-        // _finishText.SetActive(true);
+        Task.WhenAll(tasks);
+        _finishText.SetActive(true);
 
         // var randomNumber = await GetRandomNumber();
         // var randomNumber = GetRandomNumber().GetAwaiter().GetResult();
-        var randomNumber = GetRandomNumber().Result;
+        // var randomNumber = GetRandomNumber().Result;
 
-        print(randomNumber);
+        // print(randomNumber);
     }
 
-    async Task<int> GetRandomNumber()
-    {
-        var randomNumber = Random.Range(100, 300);
-        await Task.Delay(randomNumber);
-        return randomNumber;
-    }
+    // async Task<int> GetRandomNumber()
+    // {
+    //     var randomNumber = Random.Range(100, 300);
+    //     await Task.Delay(randomNumber);
+    //     return randomNumber;
+    // }
 
     // IEnumerator Action1(Action callback)
     // {
