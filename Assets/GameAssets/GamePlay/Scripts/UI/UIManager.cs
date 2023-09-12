@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-	[SerializeField] private Transform uiVictory;
-	[SerializeField] private Transform uiDefeat;
+	[SerializeField] private GameObject _uiVictory;
+	[SerializeField] private GameObject _uiDefeat;
 
     static UIManager instance;
 
@@ -19,13 +19,13 @@ public class UIManager : MonoBehaviour
 	private void EnableVictory()
 	{
 		Time.timeScale = 0f;
-		uiVictory.gameObject.SetActive(true);
+		_uiVictory.SetActive(true);
 	}
 
 	private void EnableDefeat()
 	{
 		Time.timeScale = 0f;
-		uiDefeat.gameObject.SetActive(true);
+		_uiDefeat.SetActive(true);
 	}
 
 	// =================================================

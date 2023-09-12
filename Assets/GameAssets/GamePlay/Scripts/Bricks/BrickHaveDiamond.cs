@@ -50,7 +50,7 @@ public class BrickHaveDiamond : Brick
 
 		if (GameData.GameState != GameState.Ready) return;
 
-		AudioManager.PlaySoundStatic("Gem_Collecting");
+		AudioManager.PlaySoundStatic("Gem_Ping");
 		diamond.SetActive(true);
 		diaAnim.Play("Idle");
 		diaAnim.SetBool("isFade", false);

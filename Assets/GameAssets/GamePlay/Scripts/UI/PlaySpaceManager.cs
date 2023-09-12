@@ -1,5 +1,6 @@
 using Assets.Scripts.Shared.Constant;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,10 +8,11 @@ public class PlaySpaceManager : MonoBehaviour
 {
 	[SerializeField] private int brickSize;
 	[SerializeField] private GridLayoutGroup grid;
-	[SerializeField] private Text mapTitle;
-	[SerializeField] private Text levelTitle;
+	[SerializeField] private TextMeshProUGUI mapTitle;
+	[SerializeField] private TextMeshProUGUI levelTitle;
 	[SerializeField] private Text numberDiamondTitle;
 	[SerializeField] private Text lifeTitle;
+	[SerializeField] private GameObject _uiPause;
 
 	private int numberRowCol = 0;
 	private bool canDetach = false;
@@ -74,5 +76,11 @@ public class PlaySpaceManager : MonoBehaviour
 	{
 		GameData.CurrentLife -= (int)obj;
 		lifeTitle.text = $": {GameData.CurrentLife}/{GameData.TotalLife}";
+	}
+
+	public void ShowPausePanel()
+	{
+		Time.timeScale = 0f;
+		_uiPause.SetActive(true);
 	}
 }
