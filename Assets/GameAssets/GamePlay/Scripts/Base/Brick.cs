@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Shared.Constant;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Brick : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class Brick : MonoBehaviour
 	[SerializeField] private Transform rightBox;
 	[SerializeField] private Transform underBox;
 	[SerializeField] private List<Transform> boxes = new();
+	[SerializeField] protected Animator diaAnim;
 
 	public List<Transform> Boxes { get => boxes; set => boxes = value; }
 	protected bool isDiamondHide = false;

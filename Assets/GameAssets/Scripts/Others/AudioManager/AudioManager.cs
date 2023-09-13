@@ -227,7 +227,7 @@ public class AudioManager : MonoBehaviour
     public static void UnLoop()
     {
         Instance?.AudioUnLoopHandle(Instance.soundParent);
-        Instance?.AudioUnLoopHandle(Instance.musicParent);
+        // Instance?.AudioUnLoopHandle(Instance.musicParent);
     }
 
     void AudioUnLoopHandle(GameObject parent)

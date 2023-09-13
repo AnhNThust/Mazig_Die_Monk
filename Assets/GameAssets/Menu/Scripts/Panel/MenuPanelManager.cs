@@ -3,8 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuPanelManager : MonoBehaviour
 {
-    [SerializeField] private string name;
+    [SerializeField] private string nameGamePlayScene;
     [SerializeField] private GameObject _quitPanel;
+
+    private void Start()
+    {
+        AudioManager.PlayMusicStatic("bg_music");
+    }
 
     public void ShowQuitPanel()
     {
@@ -13,6 +18,6 @@ public class MenuPanelManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(name);
+        SceneManager.LoadScene(nameGamePlayScene);
     }
 }

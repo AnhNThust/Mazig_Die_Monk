@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(SetGameState());
 	}
 
+	private void Start() {
+		AudioManager.PlayMusicStatic("bg_music");
+	}
+
 	private void OnDisable()
 	{
 		EventDispatcher.RemoveEvent(EventID.TotalDiamond, OnGetTotalDiamond);
@@ -40,6 +44,7 @@ public class GameManager : MonoBehaviour
 			}
 			else if (GameData.GameState == GameState.Victory)
 			{
+				yield return new WaitForSeconds(1f);
 				AudioManager.PlaySoundStatic("Victory");
 				UIManager.ShowVictory();
 			}
