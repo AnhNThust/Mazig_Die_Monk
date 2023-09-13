@@ -1,6 +1,6 @@
+using Assets.Scripts.Shared.Constant;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PausePanelManager : MonoBehaviour
 {
@@ -10,6 +10,8 @@ public class PausePanelManager : MonoBehaviour
     public void ReturnMenu()
     {
         Time.timeScale = 1.0f;
+		GameData.CurrentLevel = 1;
+		GameData.CurrentLife = GameData.TotalLife;
         SceneManager.LoadScene(nameMenuScene);
     }
 

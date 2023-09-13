@@ -6,18 +6,16 @@ using UnityEngine.UI;
 public class BrickHaveDiamond : Brick
 {
 	[SerializeField] private GameObject diamond;
-	[SerializeField] private Animator diaAnim;
 	[SerializeField] private float timeAnimFade;
 
 	protected override void OnEnable()
 	{
 		base.OnEnable();
 
-		//diaAnim = diamond.GetComponent<Animator>();
 		AnimationClip[] diaAnimClips = diaAnim.runtimeAnimatorController.animationClips;
 		foreach (var cl in diaAnimClips)
 		{
-			if (cl.name == "Hide")
+			if (cl.name == "Fade")
 			{
 				timeAnimFade = cl.length; // Get length of time start animation hide
 				break;
@@ -54,6 +52,7 @@ public class BrickHaveDiamond : Brick
 		diamond.SetActive(true);
 		diaAnim.Play("Idle");
 		diaAnim.SetBool("isFade", false);
+		diaAnim.SetTrigger("Appear");
 
 		EventDispatcher.PostEvent(EventID.CountDiamond, 1);
 		Destroy(GetComponent<Button>());
